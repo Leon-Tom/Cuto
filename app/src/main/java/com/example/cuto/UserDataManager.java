@@ -28,6 +28,8 @@ public class UserDataManager {
             + USER_PWD + " varchar" + ");";
 
 
+
+
     public UserDataManager(Context context) {
         mContext = context;
         Log.i(TAG, "UserDataManager construction!");
