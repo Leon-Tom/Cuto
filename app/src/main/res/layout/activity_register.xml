@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login">
+    android:background="@color/colorBj"
+    tools:context=".RegisterActivity">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/login">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                     android:layout_height="match_parent">
 
                     <Button
-                        android:id="@+id/btn_sigin"
+                        android:id="@+id/btn_register"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/login_btn"
@@ -106,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/login_btn"
                         android:layout_marginLeft="60dp"
-                        android:layout_toRightOf="@id/btn_sigin"
+                        android:layout_toRightOf="@id/btn_register"
                         android:text="返回"
                         android:textSize="18dp" />
 
