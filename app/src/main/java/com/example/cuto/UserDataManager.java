@@ -2,6 +2,7 @@ package com.example.cuto;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -77,5 +78,17 @@ public class UserDataManager {
         contentValues.put(USER_NAME,username);
         contentValues.put(USER_PWD,userpawd);
         return sqLiteDatabase.insert(TABLE_NAME,ID,contentValues);
+    }
+
+    //判断用户在注册时是否已经存在
+    public int findUserByName(){
+
+        int result = 0;
+        Cursor cursor = sqLiteDatabase.query(TABLE_NAME,null,USER_NAME,null,null,null,null);
+        if (cursor != null) {
+            result = cursor.getCount();
+            cursor.close();
+        }
+        return result;
     }
 }
