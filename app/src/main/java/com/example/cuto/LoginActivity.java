@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return true;
     }
 
+    //登录
     private void login(){
         Intent intent_main = new Intent();
         intent_main.setAction("home_activity");
@@ -78,6 +79,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         this.finish();
     }
 
+    //注册
     private void register(){
         Intent intent_register = new Intent();
         intent_register.setAction("register_activity");
