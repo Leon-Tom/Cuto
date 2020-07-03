@@ -5,12 +5,13 @@ public class UserData {
     private int userId;       //用户Id
     private String userName;  //用户名
     private String userPwad;  //用户密码
-    private String userEmail;  //用户邮箱
+    private String userEmail; //用户邮箱
+
 
     public UserData(String userName,String userPwad,String userEmail){
-        this.userName = userName;
-        this.userPwad = userPwad;
-        this.userEmail =userEmail;
+        this.userName  = userName;
+        this.userPwad  = userPwad;
+        this.userEmail = userEmail;
     }
 
 
