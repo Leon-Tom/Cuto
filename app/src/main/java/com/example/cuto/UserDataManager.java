@@ -28,14 +28,10 @@ public class UserDataManager {
             + USER_PWD + " varchar" + ");";
 
 
-
-
     public UserDataManager(Context context) {
         mContext = context;
         Log.i(TAG, "UserDataManager construction!");
     }
-
-
 
 
     //创建数据库
@@ -62,15 +58,11 @@ public class UserDataManager {
         }
     }
 
-
-
     //打开数据库
     public void openDataBase() throws SQLException{
         dataBaseManagementHelper = new DataBaseManagementHelper(mContext);
         sqLiteDatabase = dataBaseManagementHelper.getWritableDatabase();
     }
-
-
 
 
     //关闭数据库
