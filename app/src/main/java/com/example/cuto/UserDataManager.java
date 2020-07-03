@@ -61,11 +61,17 @@ public class UserDataManager {
             super.onOpen(sqLiteDatabase);
         }
     }
+
+
+
     //打开数据库
     public void openDataBase() throws SQLException{
         dataBaseManagementHelper = new DataBaseManagementHelper(mContext);
         sqLiteDatabase = dataBaseManagementHelper.getWritableDatabase();
     }
+
+
+
 
     //关闭数据库
     public void closeDataBase()throws SQLException{
