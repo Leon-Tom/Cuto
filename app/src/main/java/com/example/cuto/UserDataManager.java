@@ -83,17 +83,12 @@ public class UserDataManager {
     }
 
     //判断用户在注册时是否已经存在
-    public int findUserByName(String useName){
+    // "select  from user where u_name = ’张三‘ "  精确查找
 
-        int result = 0;
-        Cursor cursor = sqLiteDatabase.query(TABLE_NAME,null,
-                USER_NAME+"="+useName,null,
-                null,null,null);
-        if (cursor != null) {
-            result = cursor.getCount();
-            cursor.close();
-        }
-        return result;
+    public boolean findUserByName(String useName){
+
+
+        return false; //返回flase表示不存在
     }
     //根据用户名和密码来查找用户，用于登录
     public int findUserByNameAndPawd(String userName,String userPawd){

@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //跳转主页
             case R.id.btn_login:
                 if (isUserNameAndPwdValid()){
-                    login();
+
                 }
 
 
@@ -81,9 +81,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //注册
     private void register(){
-        Intent intent_register = new Intent();
-        intent_register.setAction("register_activity");
-        intent_register.addCategory("register_category");
-        startActivity(intent_register);
+            Intent intent_register = new Intent();
+            intent_register.setAction("register_activity");
+            intent_register.addCategory("register_category");
+            startActivity(intent_register);
     }
 }
