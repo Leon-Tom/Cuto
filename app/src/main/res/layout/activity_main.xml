@@ -72,8 +72,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <fragment
-                android:layout_weight="1"
+            <FrameLayout
+                android:id="@+id/frag_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
@@ -81,32 +81,77 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal">
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
 
-            <TextView
-                android:id="@+id/edit_Btn_home"
+            <RelativeLayout
                 android:layout_weight="1"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="首页"/>
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
 
-            <TextView
-                android:id="@+id/edit_Btn_fenlei"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="分类"/>
 
-            <TextView
-                android:id="@+id/edit_Btn_user"
+                <ImageButton
+                    android:id="@+id/btn_sy"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_below="@id/btn_sy"
+                    android:layout_width="28dp"
+                    android:layout_height="16dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="首页"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_weight="1"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="个人"/>
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+
+                <ImageButton
+                    android:id="@+id/btn_fl"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_below="@id/btn_fl"
+                    android:layout_width="28dp"
+                    android:layout_height="16dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="分类"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+
+                <ImageButton
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/btn_gr"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/btn_gr"
+                    android:layout_width="28dp"
+                    android:layout_height="16dp"
+                    android:text="个人"/>
+
+            </RelativeLayout>
+
+
 
         </LinearLayout>
 
