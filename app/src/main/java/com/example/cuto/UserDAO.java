@@ -16,7 +16,6 @@ public class UserDAO{
      public UserDAO(Context context){
          this.context = context;
          userDataManage = new UserDataManage(context);
-         openDataBase();
      }
 
 
