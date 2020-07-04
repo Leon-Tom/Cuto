@@ -9,21 +9,20 @@ import android.database.sqlite.SQLiteDatabase;
 public class UserDAO{
 
      private UserDataManage userDataManage ;
-     private SQLiteDatabase sqLiteDatabase = null;
-     private Context context = null;
+     private SQLiteDatabase sqLiteDatabase ;
+     private Context context;
      private Cursor cursor;
 
      public UserDAO(Context context){
          this.context = context;
          userDataManage = new UserDataManage(context);
+         openDataBase();
      }
 
 
      //打开数据库
      public void openDataBase() throws SQLException{
-         userDataManage = new UserDataManage(context);
          sqLiteDatabase = userDataManage.getWritableDatabase();
-         sqLiteDatabase.isOpen();
      }
 
 
