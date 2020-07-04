@@ -32,7 +32,7 @@ import android.database.sqlite.SQLiteDatabase;
      //查询注册用户是否已经存在
      public boolean isByName(){
 
-         return false;  //用户不存在返回false
+         return true;  //用户不存在返回true
      }
 
 

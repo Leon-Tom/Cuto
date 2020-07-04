@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private Button bT_regist;
     private Button bT_regist_to_break;
+    private UserDAO userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         initView();
     }
 
+
+    //初始化控件
     private void initView(){
 
         eT_re_userName = findViewById(R.id.ed_username_sigin);
@@ -42,9 +46,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        String TAG = "ok";
         switch (v.getId()){
             //注册
             case R.id.btn_register:
+                if(isUnameAndUpwdAndUem()){
+                    //判断用户名是否已经存在
+                    if (isByName()){
+
+                    }else{
+
+                    }
+                }
 
                 break;
 
@@ -52,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             //返回登录
             case R.id.btn_break:
                 breakTologin();
+                Log.i(TAG,"点击");
                 break;
         }
 
@@ -77,14 +91,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "用户邮箱不能为空", Toast.LENGTH_SHORT).show();
             return false;
         }
-        return true;
+        return true; //返回true表示不为空
     }
 
 
 
     //判断是否已经存在该用户
     private boolean isByName(){
+        String userNmae = eT_re_userName.getText().toString().trim();
+        //"select  from user where u_name = ’张三‘ "  精确查找
 
-       return false;
+        if (){
+
+        }
+
+       return true; //存在返回true表示该用户不存在
     }
 }
