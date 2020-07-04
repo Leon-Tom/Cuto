@@ -2,6 +2,7 @@ package com.example.cuto;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private Button bT_regist;
     private Button bT_regist_to_break;
+    private UserDAO userDAO;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         bT_regist.setOnClickListener(this);
         bT_regist_to_break.setOnClickListener(this);
+
+        if (userDAO == null){
+            userDAO = new UserDAO(context);
+        }
     }
 
 
@@ -50,12 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             //注册
             case R.id.btn_register:
                 if(isUnameAndUpwdAndUem()){
-                    //判断用户名是否已经存在
-                    if (isByNameTo()){
-
-                    }else{
-
-                    }
+                    isToRegister();
                 }
 
                 break;
@@ -93,12 +95,30 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         return true; //返回true表示不为空
     }
 
+    //检测用户名存在情况
+    private void isToRegister(){
+        String username = eT_re_userName.getText().toString().trim();
+        String userpawd = eT_re_userPawd.getText().toString().trim();
+        String useremail = eT_re_userEmail.getText().toString().trim();
+        int count = userDAO.isByName(username);
+        long flag = userDAO.userSubmit(username,userpawd);
+
+        if (count>0){
+            Toast.makeText(this, "用户已存在", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+        if (flag == -1){
+            Toast.makeText(this, "注册失败", Toast.LENGTH_SHORT).show();
+        }else{
+            UserData userData = new UserData(username,userpawd,useremail);
+            userDAO.addUser(userData);
+            Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+            breakTologin();
+            //userDAO.closeDataBase();
+        }
 
 
-    //判断是否已经存在该用户
-    private boolean isByNameTo(){
-        String userNmae = eT_re_userName.getText().toString().trim();
-        //"select  from user where u_name = ’张三‘ "  精确查找
-       return true; //存在返回true表示该用户不存在
     }
+
+
 }

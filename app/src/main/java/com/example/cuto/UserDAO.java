@@ -2,14 +2,15 @@ package com.example.cuto;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 public class UserDAO{
 
-     private UserDataManage userDataManage;
-     private SQLiteDatabase sqLiteDatabase;
-     private Context context;
+     private UserDataManage userDataManage = null;
+     private SQLiteDatabase sqLiteDatabase = null;
+     private Context context = null;
 
      public UserDAO(Context context){
          this.context = context;
@@ -21,7 +22,6 @@ public class UserDAO{
      public void openDataBase() throws SQLException{
          userDataManage = new UserDataManage(context);
          sqLiteDatabase = userDataManage.getWritableDatabase();
-
      }
 
 
@@ -32,7 +32,7 @@ public class UserDAO{
 
 
      //添加用户（注册）
-     private long addUser(UserData userData){
+     public long addUser(UserData userData){
          String u_name = userData.getUserName();
          String u_pawd = userData.getUserPwad();
          String u_email = userData.getUserEmail();
@@ -44,16 +44,33 @@ public class UserDAO{
      }
 
      //查询注册用户是否已经存在 (仅仅通过用户名)
-     // "select  from user where u_name = ’张三‘ "  精确查找
-     public boolean isByName(String uName){
-         String sql = "select  from user where u_name = ’张三‘ ";
-         return true;  //用户不存在返回true
+     // "select * from 表名 where u_name = ’张三‘ "  精确查找
+     public int isByName(String uName){
+         //String sql = " select user_name from user_book where  user_name" + "=" + uName;
+         //db.execSQL(sql);
+         int isOfno = 0;
+         Cursor cursor = sqLiteDatabase.query("user_book",null,"user_name"+"="+uName,
+                 null,null,null,null);
+         if (cursor != null){
+             isOfno = cursor.getCount();
+             cursor.close();
+
+         }
+         return isOfno;
      }
 
 
      //用户登录
-     public void userSubmit(){
-
+     public int userSubmit(String uName,String uPawd){
+         int isOfno = 0;
+         Cursor cursor = sqLiteDatabase.query("user_book", null,
+                 "user_name"+"="+uName+" and user_pawd"+"="+uPawd,
+                 null, null, null, null); //query()方法真的有毒
+         if (cursor != null){
+             isOfno = cursor.getCount();
+             cursor.close();
+         }
+         return isOfno;
      }
 
 
