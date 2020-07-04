@@ -2,8 +2,11 @@ package com.example.cuto;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +20,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private Button bT_regist;
     private Button bT_regist_to_break;
+    private UserDAO userDAO;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         initView();
     }
 
+
+    //初始化控件
     private void initView(){
 
         eT_re_userName = findViewById(R.id.ed_username_sigin);
@@ -35,6 +42,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         bT_regist.setOnClickListener(this);
         bT_regist_to_break.setOnClickListener(this);
+
+
+
+
     }
 
 
@@ -42,9 +53,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        String TAG = "ok";
         switch (v.getId()){
             //注册
             case R.id.btn_register:
+                if(isUnameAndUpwdAndUem()){
+                    isToRegister();
+                }
 
                 break;
 
@@ -52,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             //返回登录
             case R.id.btn_break:
                 breakTologin();
+                Log.i(TAG,"点击");
                 break;
         }
 
@@ -77,14 +93,33 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "用户邮箱不能为空", Toast.LENGTH_SHORT).show();
             return false;
         }
-        return true;
+        return true; //返回true表示不为空
+    }
+
+    //检测用户名存在情况
+    private void isToRegister(){
+        String username = eT_re_userName.getText().toString().trim();
+        String userpawd = eT_re_userPawd.getText().toString().trim();
+        String useremail = eT_re_userEmail.getText().toString().trim();
+        int count = userDAO.isByName(username);
+        long flag = userDAO.userSubmit(username,userpawd);
+
+        if (count>0){
+            Toast.makeText(this, "用户已存在", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+        if (flag == -1){
+            Toast.makeText(this, "注册失败", Toast.LENGTH_SHORT).show();
+        }else{
+            UserData userData = new UserData(username,userpawd,useremail);
+            userDAO.addUser(userData);
+            Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+            breakTologin();
+            //userDAO.closeDataBase();
+        }
+
+
     }
 
 
-
-    //判断是否已经存在该用户
-    private boolean isByName(){
-
-       return false;
-    }
 }
