@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,9 +43,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         bT_regist.setOnClickListener(this);
         bT_regist_to_break.setOnClickListener(this);
 
-        if (userDAO == null){
-            userDAO = new UserDAO(context);
-        }
+
+
+
     }
 
 

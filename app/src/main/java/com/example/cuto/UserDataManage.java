@@ -10,7 +10,7 @@ public class UserDataManage extends SQLiteOpenHelper {
 
     private static final String TAG = "UserDataManage";
     private static final String DB_NAME = "user_data";
-    private  static final String TABLE_NAME = "user_book";
+//  private  static final String TABLE_NAME = "user_book";
     private static final int VERSION = 1;                  //数据库版本号
 
     public UserDataManage(Context context) {
@@ -30,4 +30,5 @@ public class UserDataManage extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
 }

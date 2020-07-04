@@ -8,9 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class UserDAO{
 
-     private UserDataManage userDataManage = null;
+     private UserDataManage userDataManage ;
      private SQLiteDatabase sqLiteDatabase = null;
      private Context context = null;
+     private Cursor cursor;
 
      public UserDAO(Context context){
          this.context = context;
@@ -22,6 +23,7 @@ public class UserDAO{
      public void openDataBase() throws SQLException{
          userDataManage = new UserDataManage(context);
          sqLiteDatabase = userDataManage.getWritableDatabase();
+         sqLiteDatabase.isOpen();
      }
 
 
@@ -49,12 +51,11 @@ public class UserDAO{
          //String sql = " select user_name from user_book where  user_name" + "=" + uName;
          //db.execSQL(sql);
          int isOfno = 0;
-         Cursor cursor = sqLiteDatabase.query("user_book",null,"user_name"+"="+uName,
+         cursor = sqLiteDatabase.query("user_book",null,"user_name"+"="+uName,
                  null,null,null,null);
          if (cursor != null){
              isOfno = cursor.getCount();
              cursor.close();
-
          }
          return isOfno;
      }
@@ -65,7 +66,7 @@ public class UserDAO{
          int isOfno = 0;
          Cursor cursor = sqLiteDatabase.query("user_book", null,
                  "user_name"+"="+uName+" and user_pawd"+"="+uPawd,
-                 null, null, null, null); //query()方法真的有毒
+                 null, null, null, null,null); //query()方法真的有毒
          if (cursor != null){
              isOfno = cursor.getCount();
              cursor.close();
