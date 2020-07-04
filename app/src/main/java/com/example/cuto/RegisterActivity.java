@@ -18,7 +18,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private Button bT_regist;
     private Button bT_regist_to_break;
-    private UserDAO userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btn_register:
                 if(isUnameAndUpwdAndUem()){
                     //判断用户名是否已经存在
-                    if (isByName()){
+                    if (isByNameTo()){
 
                     }else{
 
@@ -97,14 +96,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     //判断是否已经存在该用户
-    private boolean isByName(){
+    private boolean isByNameTo(){
         String userNmae = eT_re_userName.getText().toString().trim();
         //"select  from user where u_name = ’张三‘ "  精确查找
-
-        if (){
-
-        }
-
        return true; //存在返回true表示该用户不存在
     }
 }
