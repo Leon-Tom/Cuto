@@ -8,7 +8,10 @@ public class UserData {
     private String userEmail; //用户邮箱
 
 
-    public UserData(String userName,String userPwad,String userEmail){
+    public UserData(){
+    }
+
+    public UserData(String userName,String userPwad, String userEmail){
         this.userName  = userName;
         this.userPwad  = userPwad;
         this.userEmail = userEmail;

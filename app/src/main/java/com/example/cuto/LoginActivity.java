@@ -44,10 +44,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //跳转主页
             case R.id.btn_login:
                 if (isUserNameAndPwdValid()){
-
+                    login();
                 }
-
-
                 break;
 
 

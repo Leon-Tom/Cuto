@@ -9,7 +9,7 @@ import android.util.Log;
 public class UserDataManage extends SQLiteOpenHelper {
 
     private static final String TAG = "UserDataManage";
-    private static final String DB_NAME = "user_data";
+    private static final String DB_NAME = "user_data";     //数据库名
 //  private  static final String TABLE_NAME = "user_book";
     private static final int VERSION = 1;                  //数据库版本号
 
@@ -22,8 +22,7 @@ public class UserDataManage extends SQLiteOpenHelper {
          String sql = "create table user_book(_id integer primary key autoincrement, user_name varchar(20),user_pawd varchar(20),user_email varchar(20))";
          db.execSQL("drop table if exists user_book");
          db.execSQL(sql);
-         Log.i(TAG,sql);
-         Log.i(TAG,"创建成功");
+         Log.i(TAG,"表创建成功");
     }
 
     @Override

@@ -17,11 +17,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText eT_re_userName;
     private EditText eT_re_userPawd;
     private EditText eT_re_userEmail;
-
     private Button bT_regist;
     private Button bT_regist_to_break;
-    private UserDAO userDAO;
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +36,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         eT_re_userEmail = findViewById(R.id.ed_email_sigin);
         bT_regist = findViewById(R.id.btn_register);
         bT_regist_to_break = findViewById(R.id.btn_break);
-
         bT_regist.setOnClickListener(this);
         bT_regist_to_break.setOnClickListener(this);
 
-
-
-
     }
-
-
-
 
     @Override
     public void onClick(View v) {
@@ -58,11 +48,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             //注册
             case R.id.btn_register:
                 if(isUnameAndUpwdAndUem()){
-                    isToRegister();
+
                 }
-
                 break;
-
 
             //返回登录
             case R.id.btn_break:
@@ -95,31 +83,4 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
         return true; //返回true表示不为空
     }
-
-    //检测用户名存在情况
-    private void isToRegister(){
-        String username = eT_re_userName.getText().toString().trim();
-        String userpawd = eT_re_userPawd.getText().toString().trim();
-        String useremail = eT_re_userEmail.getText().toString().trim();
-        int count = userDAO.isByName(username);
-        long flag = userDAO.userSubmit(username,userpawd);
-
-        if (count>0){
-            Toast.makeText(this, "用户已存在", Toast.LENGTH_SHORT).show();
-            return ;
-        }
-        if (flag == -1){
-            Toast.makeText(this, "注册失败", Toast.LENGTH_SHORT).show();
-        }else{
-            UserData userData = new UserData(username,userpawd,useremail);
-            userDAO.addUser(userData);
-            Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
-            breakTologin();
-            //userDAO.closeDataBase();
-        }
-
-
-    }
-
-
 }
