@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageButton_1.setOnClickListener(this);
         imageButton_2.setOnClickListener(this);
         imageButton_3.setOnClickListener(this);
+        initFragment();
 
     }
 
@@ -60,5 +61,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ft_3.commit();
                 break;
         }
+    }
+
+    public void initFragment(){
+        HomeFragment homeFragment = new HomeFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft_1 = fragmentManager.beginTransaction();
+        ft_1.replace(R.id.frag_view,homeFragment);
+        ft_1.commit();
     }
 }
