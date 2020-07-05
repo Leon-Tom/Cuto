@@ -11,12 +11,20 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <EditText
 
-        <ListView
-            android:id="@+id/list_view_classify"
+            android:id="@+id/classify_input"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:hint="输入数字"
+            android:textSize="30dp"/>
 
+        <Button
+            android:id="@+id/classify_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提交"
+            android:textSize="30dp"/>
 
 
     </LinearLayout>
