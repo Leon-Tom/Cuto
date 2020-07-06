@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         intent_main.setAction("home_activity");
         intent_main.addCategory("home_category");
         startActivity(intent_main);
-        this.finish();
+        finish();
     }
 
     //注册

@@ -33,7 +33,7 @@
                    android:id="@+id/user_image_log"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:background="@mipmap/ic_launcher"/>
+                   android:background="@drawable/tx"/>
 
                <View
                    android:id="@+id/view_log"
@@ -81,7 +81,7 @@
                   <ImageView
                       android:layout_centerHorizontal="true"
                       android:id="@+id/user_image_zhuti"
-                      android:background="@mipmap/ic_launcher"
+                      android:background="@drawable/zhuti"
                       android:layout_width="50dp"
                       android:layout_height="50dp"/>
                   <TextView
@@ -102,7 +102,7 @@
                   <ImageView
                       android:layout_centerHorizontal="true"
                       android:id="@+id/user_image_bizhi"
-                      android:background="@mipmap/ic_launcher"
+                      android:background="@drawable/bz"
                       android:layout_width="50dp"
                       android:layout_height="50dp"/>
                   <TextView
@@ -123,7 +123,7 @@
                   <ImageView
                       android:layout_centerHorizontal="true"
                       android:id="@+id/user_image_dtbz"
-                      android:background="@mipmap/ic_launcher"
+                      android:background="@drawable/dtbz"
                       android:layout_width="50dp"
                       android:layout_height="50dp"/>
                   <TextView
@@ -144,7 +144,7 @@
                   <ImageView
                       android:layout_centerHorizontal="true"
                       android:id="@+id/user_image_shoucan"
-                      android:background="@mipmap/ic_launcher"
+                      android:background="@drawable/sc"
                       android:layout_width="50dp"
                       android:layout_height="50dp"/>
                   <TextView
@@ -165,7 +165,7 @@
                   <ImageView
                       android:layout_centerHorizontal="true"
                       android:id="@+id/user_image_qita"
-                      android:background="@mipmap/ic_launcher"
+                      android:background="@drawable/qita"
                       android:layout_width="50dp"
                       android:layout_height="50dp"/>
                   <TextView
@@ -276,3 +276,4 @@
    </LinearLayout>
 
 </LinearLayout>
+

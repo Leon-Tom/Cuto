@@ -12,11 +12,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <activity android:name=".DetailedImg"></activity>
+
         <activity android:name=".RegisterActivity">
             <intent-filter>
-                <action android:name="register_activity"/>
-                <category android:name="register_category"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="register_activity" />
+                <category android:name="register_category" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -27,13 +29,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan">
-
             <intent-filter>
-                <action android:name="home_activity"/>
-                <category android:name="home_category"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="home_activity" />
+                <category android:name="home_category" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 

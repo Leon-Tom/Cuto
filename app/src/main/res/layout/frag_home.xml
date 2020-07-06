@@ -69,18 +69,37 @@
 
       <LinearLayout
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical">
+          android:layout_height="match_parent"
+          android:orientation="horizontal">
 
+         <View
+             android:layout_width="10dp"
+             android:layout_height="0dp"/>
 
-         <ListView
-             android:id="@+id/list_view_home"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="20dp"/>
+           <ListView
+               android:fastScrollEnabled="false"
+               android:layout_weight="1"
+               android:id="@+id/list_view_home"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent" />
+        </LinearLayout>
+
+         <View
+             android:layout_width="10dp"
+             android:layout_height="0dp"/>
 
       </LinearLayout>
+
+
+
    </LinearLayout>
-
-
 
 </LinearLayout>
