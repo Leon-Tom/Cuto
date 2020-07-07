@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -31,17 +32,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageButton_3.setOnClickListener(this);
         initFragment();
 
+
+
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_sy:
-                HomeFragment homeFragment = new HomeFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction ft_1 = fragmentManager.beginTransaction();
-                ft_1.replace(R.id.frag_view,homeFragment);
-                ft_1.commit();
+                initFragment();
                 break;
 
             case R.id.btn_fl:
@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_gr:
-
                 UserFragment userFragment = new UserFragment();
                 FragmentManager fragmentManager_3 = getSupportFragmentManager();
                 FragmentTransaction ft_3 = fragmentManager_3.beginTransaction();
@@ -63,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+    //写一个加载首页的方法，用于初始化首页 其他的页面可以不写了 对此一举
     public void initFragment(){
         HomeFragment homeFragment = new HomeFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();

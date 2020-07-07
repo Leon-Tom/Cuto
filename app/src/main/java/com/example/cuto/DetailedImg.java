@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class DetailedImg extends AppCompatActivity implements View.OnClickListener {
 //拿来显示一张用户具体点击的图片 为其展示全图
@@ -22,6 +23,8 @@ public class DetailedImg extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_img);
+        initView();
+
     }
 
     private void initView(){
@@ -35,6 +38,9 @@ public class DetailedImg extends AppCompatActivity implements View.OnClickListen
         button_setWP.setOnClickListener(this);
         button_outTo.setOnClickListener(this);
 
+//        Intent intent = getIntent();
+//        Bundle bundle = intent.getExtras();
+//        imageView.setImageResource(bundle.getInt("ImageId"));
     }
 
     @Override
@@ -46,7 +52,7 @@ public class DetailedImg extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case R.id.detailed_btn_setWP:
-                setWallpaper();
+                setWallpaper(R.drawable.img_2);
                 break;
 
             case R.id.detailed_btn_outTo:
@@ -62,8 +68,14 @@ public class DetailedImg extends AppCompatActivity implements View.OnClickListen
     }
 
     //直接设置成壁纸
-    private void setWallpaper(){
-
+    private void setWallpaper(int imageId){
+            try{
+                this.clearWallpaper();
+                this.setWallpaper(getResources().openRawResource(imageId));
+                Toast.makeText(this, "设置成功 请返回桌面查看", Toast.LENGTH_SHORT).show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
     }
 

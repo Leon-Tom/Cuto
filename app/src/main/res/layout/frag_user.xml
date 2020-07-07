@@ -46,9 +46,9 @@
                    android:layout_centerInParent="true"
                    android:layout_toRightOf="@id/view_log"
                    android:id="@+id/text_view_username"
+                   android:text=""
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="谁 语"
                    android:textSize="30sp"/>
 
            </RelativeLayout>
