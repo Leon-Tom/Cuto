@@ -16,7 +16,6 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private UserDataManage userDataManage;
-    private SQLiteDatabase db;
     private static final String TAG = "LoginActivity";
 
 
@@ -77,38 +76,83 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //登录
     private void login(){
 
-        userDataManage = new UserDataManage(this);
-        db = userDataManage.getReadableDatabase();
-
         String u_name = editText_username.getText().toString().trim();
         String u_pawd = editText_userpwad.getText().toString().trim();
 
 
-        Cursor cursor = db.query("user_book", null, null, null, null, null, null);
+        userDataManage = new UserDataManage(this);
+        SQLiteDatabase db = userDataManage.getReadableDatabase();
+        Cursor cursor = db.query("user_book", null, null,
+                null, null, null, null);
+
         while (cursor.moveToNext()){
-            String name = cursor.getString(cursor.getColumnIndex("user_name"));
-            String pawd = cursor.getString(cursor.getColumnIndex("user_pawd"));
-            if (name.equals(u_name)){
-                if (pawd.equals(u_pawd)) {
+            String name = cursor.getString(cursor.getColumnIndex("user_name")).trim();
+            String pawd = cursor.getString(cursor.getColumnIndex("user_pawd")).trim();
+
+            if (u_name.equals(name)) {
+                if ( u_pawd.equals(pawd)) {
                     Intent intent = new Intent(this, MainActivity.class);
-                    intent.putExtra("name",u_name);
+                    intent.putExtra("name", u_name);
                     startActivity(intent);
+                    Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, "登录成功");
                     this.finish();
-                    break;
                 }else{
-                    Toast.makeText(this, "用户密码不正确", Toast.LENGTH_SHORT).show();
-                    break;
+                    Toast.makeText(this, "密码不正确", Toast.LENGTH_SHORT).show();
                 }
             }else{
-                Toast.makeText(this, "用户名不正确", Toast.LENGTH_SHORT).show();
-                Log.i(TAG,"");
-                break;
+                    Toast.makeText(this, "不存在该用户，请注册", Toast.LENGTH_SHORT).show();
+                    Log.i(TAG,"信息不正确");
+                }
             }
-        }
         cursor.close();
         Log.i(TAG,"游标关闭");
         db.close();
         Log.i(TAG,"数据库关闭");
+    }
+
+
+
+    private void login2(){
+        String u_name = editText_username.getText().toString().trim();
+        String u_pawd = editText_userpwad.getText().toString().trim();
+
+
+        userDataManage = new UserDataManage(this);
+        SQLiteDatabase db = userDataManage.getReadableDatabase();
+
+        Cursor cursor = db.query("user_book", null, null,
+                null, null, null, null);
+
+        if (cursor.moveToFirst()){
+            for (int i =0;i< cursor.getCount();i++){
+                cursor.move(i);
+                String uname = cursor.getString(1);
+                String upawd = cursor.getString(2);
+                if (u_name.equals(uname)){
+                    if (u_pawd.equals(upawd)){
+                        Intent intent = new Intent(this, MainActivity.class);
+                        intent.putExtra("name", u_name);
+                        startActivity(intent);
+                        Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+                        Log.i(TAG, "登录成功");
+                        this.finish();
+                        break;
+                    }else {
+                        Toast.makeText(this, "密码不正确", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                }else {
+                    Toast.makeText(this, "不存在该用户，请注册", Toast.LENGTH_SHORT).show();
+                    Log.i(TAG,"信息不正确");
+                    break;
+                }
+            }
+            cursor.close();
+            Log.i(TAG,"游标关闭");
+            db.close();
+            Log.i(TAG,"数据库关闭");
+        }
     }
 
 

@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -28,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button bT_regist;
     private Button bT_regist_to_break;
     private UserDataManage userDataManage;
+    private SQLiteDatabase sqLiteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +47,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         eT_re_userEmail = findViewById(R.id.ed_email_sigin);
         bT_regist = findViewById(R.id.btn_register);
         bT_regist_to_break = findViewById(R.id.btn_break);
+
         bT_regist.setOnClickListener(this);
         bT_regist_to_break.setOnClickListener(this);
 
         if (userDataManage == null){
             userDataManage = new UserDataManage(this);
-            userDataManage.getWritableDatabase();
         }
+
 
     }
 
@@ -99,13 +102,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     //注册
     private void regist(){
-        userDataManage = new UserDataManage(this);
-        SQLiteDatabase db = userDataManage.getWritableDatabase();//建立打开可读写的数据库实例
-        Log.i(TAG,"数据库开启成功");
 
         String u_name = eT_re_userName.getText().toString().trim();
         String u_pawd = eT_re_userPawd.getText().toString().trim();
         String u_email = eT_re_userEmail.getText().toString().trim();
+
+        userDataManage = new UserDataManage(this);
+        SQLiteDatabase db = userDataManage.getWritableDatabase();//建立打开可读写的数据库实例
+        Log.i(TAG,"数据库开启成功");
+
+        userDataManage.addUserManager(db, u_name, u_pawd, u_email);
+        Log.i(TAG, "写入成功");
+        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+        breakTologin();
+
+
+        Cursor cursor = db.query("user_book", null, "user_name"+"="+u_name,
+                null, null, null, null);
+        Log.i(TAG,"游标建立成功");
 
         // rawQuerySql = "select * from "+TABLE_NAME_PERSON+" where "+VALUE_NAME +" = ?"+" and "+ VALUE_AGE +" > ?";
         //        cursor = getWritableDatabase().rawQuery(rawQuerySql,new String[]{"张三","23"});
@@ -113,28 +127,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //                null,null,null,null,null);  //差点被这个函数折磨死掉
 
         //String sql = "select user_name from user_book where user_name=?";
-
-
-        Cursor cursor = db.query("user_book", new String[]{"user_name"}, null, null, null, null, null);
         while (cursor.moveToNext()){
-           String name = cursor.getString(cursor.getColumnIndex("user_name"));
+            Log.i(TAG,"进入循环");
+           String name = cursor.getString(cursor.getColumnIndex("user_name")).trim();
+
            if(name.equals(u_name)){
+               Log.i(TAG,"进入判断1");
                Toast.makeText(this, "用户已存在", Toast.LENGTH_SHORT).show();
+               Intent intent = new Intent(this, LoginActivity.class);
+               startActivity(intent);
            }else{
+               Log.i(TAG,"写入");
                userDataManage.addUserManager(db, u_name, u_pawd, u_email);
                Log.i(TAG, "写入成功");
                Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
                breakTologin();
            }
-            break;
 
        }
         cursor.close();
-        Log.i(TAG,"游标关闭");
+        Log.i(TAG,"游标关闭成功");
         db.close();
-        Log.i(TAG,"数据库关闭");
+        Log.i(TAG,"数据库关闭成功");
     }
-
-
 
 }

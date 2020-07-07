@@ -11,8 +11,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="分类页面测试"
+            android:gravity="center"
+            android:textSize="30dp"/>
+
+        <EditText
+            android:layout_marginTop="100dp"
             android:id="@+id/classify_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +29,9 @@
             android:textSize="30dp"/>
 
         <Button
+            android:layout_marginTop="100dp"
             android:id="@+id/classify_btn"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="提交"
