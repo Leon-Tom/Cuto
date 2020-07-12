@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class DetailedImg extends AppCompatActivity implements View.OnClickListener {
-//拿来显示一张用户具体点击的图片 为其展示全图
+    /**
+     * 显示一张用户具体点击的图片 为其展示全图
+     */
 
 
 
@@ -38,9 +40,6 @@ public class DetailedImg extends AppCompatActivity implements View.OnClickListen
         button_setWP.setOnClickListener(this);
         button_outTo.setOnClickListener(this);
 
-//        Intent intent = getIntent();
-//        Bundle bundle = intent.getExtras();
-//        imageView.setImageResource(bundle.getInt("ImageId"));
     }
 
     @Override

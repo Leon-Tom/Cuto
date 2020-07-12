@@ -1,7 +1,6 @@
 package com.example.cuto;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ButtonBarLayout;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,6 +13,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
+
+    /***
+     * 手机登录页面
+     *
+     */
+
 
     private UserDataManage userDataManage;
     private static final String TAG = "LoginActivity";
@@ -97,12 +103,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "登录成功");
                     this.finish();
+                    break;
                 }else{
                     Toast.makeText(this, "密码不正确", Toast.LENGTH_SHORT).show();
+                    break;
                 }
             }else{
                     Toast.makeText(this, "不存在该用户，请注册", Toast.LENGTH_SHORT).show();
                     Log.i(TAG,"信息不正确");
+                    break;
                 }
             }
         cursor.close();

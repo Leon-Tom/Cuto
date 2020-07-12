@@ -22,6 +22,12 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+    /***
+     * 注册页面
+     */
+
+
     private static final String TAG = "RegisterActivity";
     private EditText eT_re_userName;
     private EditText eT_re_userPawd;
@@ -117,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         breakTologin();
 
 
-        Cursor cursor = db.query("user_book", null, "user_name"+"="+u_name,
+        Cursor cursor = db.query("user_book", null, null,
                 null, null, null, null);
         Log.i(TAG,"游标建立成功");
 
@@ -136,12 +142,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                Toast.makeText(this, "用户已存在", Toast.LENGTH_SHORT).show();
                Intent intent = new Intent(this, LoginActivity.class);
                startActivity(intent);
+               break;
            }else{
                Log.i(TAG,"写入");
                userDataManage.addUserManager(db, u_name, u_pawd, u_email);
                Log.i(TAG, "写入成功");
                Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
                breakTologin();
+               break;
            }
 
        }

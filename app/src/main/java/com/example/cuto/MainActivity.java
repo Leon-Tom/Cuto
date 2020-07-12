@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -14,6 +13,11 @@ import com.example.cuto.fragment_UI.HomeFragment;
 import com.example.cuto.fragment_UI.UserFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    /**
+     * 首页
+     *
+     * */
 
 
     private ImageButton imageButton_1,imageButton_2,imageButton_3;
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    //写一个加载首页的方法，用于初始化首页 其他的页面可以不写了 对此一举
+    //加载首页的方法，用于初始化首页
     public void initFragment(){
         HomeFragment homeFragment = new HomeFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
