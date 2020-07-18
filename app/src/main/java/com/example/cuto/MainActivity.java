@@ -78,8 +78,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 }
 
 
-/**
- * z流星雨
- *
- */
 
